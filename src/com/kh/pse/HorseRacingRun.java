@@ -13,21 +13,21 @@ public class HorseRacingRun {
 			int choice = hrFunc.mainMenu();
 			
 			switch(choice) {
-			case 0 : hrFunc.selectMenu();  // °æÁÖ¸¶ ¼±ÅÃ ¸Ş´º
+			case 0 : hrFunc.selectMenu();  // ê²½ì£¼ë§ˆ ì„ íƒ ë©”ë‰´
 				break;
-			case 1 : hrFunc.racingMenu();  // °æÁÖ ¸Ş´º
+			case 1 : hrFunc.racingMenu();  // ê²½ì£¼ ë©”ë‰´
 				break;
-			case 2 : hrFunc.restMenu();   // ÈŞ½Ä ¸Ş´º
+			case 2 : hrFunc.restMenu();   // íœ´ì‹ ë©”ë‰´
 				break;
-			case 3 : hrFunc.gambleMenu();  // °æÁÖ¸¶ »Ì±â ¸Ş´º
+			case 3 : hrFunc.gambleMenu();  // ê²½ì£¼ë§ˆ ë½‘ê¸° ë©”ë‰´
 				break;
 			case 4 : hrFunc.byeMessage();
 				break Bye;
 			default : 
-				System.out.println("0~3 À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.println("0~3 ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 				break;
-			}  // switch¹® Á¾·á
-		}  // while¹® Á¾·á
+			}  // switchë¬¸ ì¢…ë£Œ
+		}  // whileë¬¸ ì¢…ë£Œ
 
 	}
 

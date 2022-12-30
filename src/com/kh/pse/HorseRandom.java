@@ -2,7 +2,7 @@ package com.kh.pse;
 
 import java.util.Random;
 
-public class HorseRandom { 	// µî±Þ, Ã¼·Â, ½ºÇÇµå
+public class HorseRandom { 	// ë“±ê¸‰, ì²´ë ¥, ìŠ¤í”¼ë“œ
 	
 	public HorseRandom(){} 	 
 	
@@ -10,14 +10,14 @@ public class HorseRandom { 	// µî±Þ, Ã¼·Â, ½ºÇÇµå
 		
 		Random rand = new Random();
 		int a = rand.nextInt(100) + 1;  
-		if(a > 0 && a <= 50) {    // 50% ÇÏ  
-			return "ÇÏ";
+		if(a > 0 && a <= 50) {    // 50% í•˜  
+			return "í•˜";
 		}
-		else if (a > 50 && a <= 80) {  // 30% Áß
-			return "Áß";
+		else if (a > 50 && a <= 80) {  // 30% ì¤‘
+			return "ì¤‘";
 		}
-		else {   // 20% »ó
-			return "»ó";
+		else {   // 20% ìƒ
+			return "ìƒ";
 		}
 		
 	}
@@ -25,16 +25,16 @@ public class HorseRandom { 	// µî±Þ, Ã¼·Â, ½ºÇÇµå
 	public int randSpeed(String grade) {
 		Random rand = new Random();
 		int speed = 0;
-		if(grade == "ÇÏ") {	
-			speed = rand.nextInt(35)+1; 	// ½ºÇÇµå°ª: 1~35     
+		if(grade == "í•˜") {	
+			speed = rand.nextInt(35)+1; 	// ìŠ¤í”¼ë“œê°’: 1~35     
 			return speed;		
 		}
-		else if(grade == "Áß") {
-			speed = rand.nextInt(40)+10;    // ½ºÇÇµå°ª: 10~49
+		else if(grade == "ì¤‘") {
+			speed = rand.nextInt(40)+10;    // ìŠ¤í”¼ë“œê°’: 10~49
 			return speed;
 		}
 		else {
-			speed = rand.nextInt(50)+20;    // ½ºÇÇµå°ª: 20~70
+			speed = rand.nextInt(50)+20;    // ìŠ¤í”¼ë“œê°’: 20~70
 			return speed;
 		}
 	}

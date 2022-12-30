@@ -2,7 +2,7 @@ package com.kh.pse;
 
 public class HorseMoney {
 
-	private static HorseMoney hm;    // Money ½Ì±ÛÅæ
+	private static HorseMoney hm;    // Money ì‹±ê¸€í†¤
 
 	private static int money = 0;
 	private static int state = 1;

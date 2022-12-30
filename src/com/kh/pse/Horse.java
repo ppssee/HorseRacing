@@ -9,16 +9,18 @@ public class Horse {
 	
 	HorseRandom horseRand;
 	
-	public Horse() {  		// °æÁÖ¸¶ »ı¼º°ú µ¿½Ã¿¡ µî±Ş°ú ½ºÇÇµå ·£´ı °ªÀ¸·Î ÃÊ±âÈ­.
+	
+	public Horse() {  		// ê²½ì£¼ë§ˆ ìƒì„±ê³¼ ë™ì‹œì— ë“±ê¸‰ê³¼ ìŠ¤í”¼ë“œ ëœë¤ ê°’ìœ¼ë¡œ ì´ˆê¸°í™”.
 		horseRand = new HorseRandom();
 		grade = horseRand.randGrade(); 
 		speed = horseRand.randSpeed(getGrade());
 	}
-
-	
 	public Horse(String name) {
 		this.name = name;
 	}
+	
+	
+	
 
 	public String getName() {
 		return name;

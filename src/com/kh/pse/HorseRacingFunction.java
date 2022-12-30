@@ -20,15 +20,15 @@ public class HorseRacingFunction {
 	};
 
 
-	public void startMenu() { 		// ½ÃÀÛ ¸Ş´º
+	public void startMenu() { 		// ì‹œì‘ ë©”ë‰´
 		
-		System.out.println("================== °æ¸¶ ÇÁ·Î±×·¥ ==================");
-		System.out.println("±âº» °æÁÖ¸¶¸¦ »ı¼ºÇÕ´Ï´Ù.");
-		System.out.println("»ç¿ëÇÏ½Ç °æÁÖ¸¶ÀÇ Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-		System.out.print("°æÁÖ¸¶ÀÇ ÀÌ¸§ : ");
+		System.out.println("================== ê²½ë§ˆ í”„ë¡œê·¸ë¨ ==================");
+		System.out.println("ê¸°ë³¸ ê²½ì£¼ë§ˆë¥¼ ìƒì„±í•©ë‹ˆë‹¤.");
+		System.out.println("ì‚¬ìš©í•˜ì‹¤ ê²½ì£¼ë§ˆì˜ ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		System.out.print("ê²½ì£¼ë§ˆì˜ ì´ë¦„ : ");
 		String name = sc.nextLine();
 		horse[0] = new Horse();
-		horse[0].setGrade("ÇÏ");
+		horse[0].setGrade("í•˜");
 		horse[0].setSpeed(horseRand.randSpeed(horse[0].getGrade()));
 		horse[0].setName(name);
 
@@ -36,54 +36,54 @@ public class HorseRacingFunction {
 
 	};	
 
-	public int mainMenu() { // ¸ŞÀÎ ¸Ş´º
+	public int mainMenu() { // ë©”ì¸ ë©”ë‰´
 		clearScreen();
-		System.out.println("==================== ¸ŞÀÎ ¸Ş´º ====================");
-		System.out.printf("ÀÌ¸§: %-6s\t \n", horse[hm.getState()].getName());
-		System.out.printf("Ã¼·Â: %3d | ½ºÇÇµå: %2d | µî±Ş: %s | Àç»ê: %d |  \n", horse[hm.getState()].getHp(), horse[hm.getState()].getSpeed(), horse[hm.getState()].getGrade(), hm.getMoney());
+		System.out.println("==================== ë©”ì¸ ë©”ë‰´ ====================");
+		System.out.printf("ì´ë¦„: %-6s\t \n", horse[hm.getState()].getName());
+		System.out.printf("ì²´ë ¥: %3d | ìŠ¤í”¼ë“œ: %2d | ë“±ê¸‰: %s | ì¬ì‚°: %d |  \n", horse[hm.getState()].getHp(), horse[hm.getState()].getSpeed(), horse[hm.getState()].getGrade(), hm.getMoney());
 		System.out.println();
-		System.out.println("0. ¼±ÅÃ");
-		System.out.println("1. °æÁÖ");
-		System.out.println("2. ÈŞ½Ä");
-		System.out.println("3. »Ì±â");
-		System.out.println("4. Á¾·á");
-		System.out.print("ÀÔ·Â: ");
+		System.out.println("0. ì„ íƒ");
+		System.out.println("1. ê²½ì£¼");
+		System.out.println("2. íœ´ì‹");
+		System.out.println("3. ë½‘ê¸°");
+		System.out.println("4. ì¢…ë£Œ");
+		System.out.print("ì…ë ¥: ");
 		int choice = sc.nextInt();
 		sc.nextLine();
 		return choice;
 	};		
 
-	public void selectMenu() { 	// 0. ¼±ÅÃ
+	public void selectMenu() { 	// 0. ì„ íƒ
 		clearScreen();
-		System.out.println("=================== °æÁÖ¸¶ ¼±ÅÃ ===================");
+		System.out.println("=================== ê²½ì£¼ë§ˆ ì„ íƒ ===================");
 		for(int i = 0; i<horse.length; i++) {
 			if(horse[i] != null) {
-				System.out.printf("%2d. ÀÌ¸§: %-6s\t| ½ºÇÇµå: %2d | µî±Ş: %s\n", i, horse[i].getName(), horse[i].getSpeed(), horse[i].getGrade());
+				System.out.printf("%2d. ì´ë¦„: %-6s\t| ìŠ¤í”¼ë“œ: %2d | ë“±ê¸‰: %s\n", i, horse[i].getName(), horse[i].getSpeed(), horse[i].getGrade());
 				
 			}
 		}
 		System.out.println();
-		System.out.print("ÀÔ·Â: ");	
+		System.out.print("ì…ë ¥: ");	
 		int choice = sc.nextInt();
 		sc.nextLine();
 		hm.setState(choice);
 	};	
 
-	public void racingMenu() { 	//  1. °æÁÖ
+	public void racingMenu() { 	//  1. ê²½ì£¼
 		clearScreen();
 		try {
-			if(horse[hm.getState()].getHp() >= 60) {		// Ã¼·Â 60 ÀÌ»ó¸¸ °æÁÖ °¡´É
+			if(horse[hm.getState()].getHp() >= 60) {		// ì²´ë ¥ 60 ì´ìƒë§Œ ê²½ì£¼ ê°€ëŠ¥
 				for(int i=0; i<20; i++) {
 					clearScreen();
-					System.out.println("===============1¹ø ¶óÀÎ===============");
+					System.out.println("===============1ë²ˆ ë¼ì¸===============");
 					while(true) {
 						int random = rand.nextInt(100);
 						
-						if(horse[hm.getState()].getSpeed() > random) {	 // ·£´ı¼ıÀÚº¸´Ù ½ºÇÇµå°¡ Å¬ °æ¿ì¿¡¸¸ ÇÑÄ­¾¿ ÀÌµ¿ (±¸Çö¸øÇÔ)
+						if(horse[hm.getState()].getSpeed() > random) {	 // ëœë¤ìˆ«ìë³´ë‹¤ ìŠ¤í”¼ë“œê°€ í´ ê²½ìš°ì—ë§Œ í•œì¹¸ì”© ì´ë™ (êµ¬í˜„ëª»í•¨)
 							for(int j=0; j<=i; j++) {
 								if(j==i) {
 									
-									System.out.print("¡Ü");
+									System.out.print("â—");
 								}
 								System.out.print("  ");
 							}
@@ -94,28 +94,28 @@ public class HorseRacingFunction {
 						} 
 						
 					}
-				} // °æÁÖ ³¡
-				horse[hm.getState()].setHp(horse[hm.getState()].getHp() - rand.nextInt(30));	// Á¾·á ÈÄ 0~29 Ã¼·Â°¨¼Ò.
-				hm.setMoney(hm.getMoney() + rand.nextInt(100));		// Á¾·á ÈÄ 0~99¿ø È¹µæ.
+				} // ê²½ì£¼ ë
+				horse[hm.getState()].setHp(horse[hm.getState()].getHp() - rand.nextInt(30));	// ì¢…ë£Œ í›„ 0~29 ì²´ë ¥ê°ì†Œ.
+				hm.setMoney(hm.getMoney() + rand.nextInt(100));		// ì¢…ë£Œ í›„ 0~99ì› íšë“.
 			} 
 			else {
 				clearScreen();
-				System.out.println("Ã¼·Â 60 ÀÌ»ó¸¸ °¡´ÉÇÕ´Ï´Ù.");
-				System.out.println("ÈŞ½ÄÀ» ÅëÇØ Ã¼·ÂÀ» È¸º¹ÇÏ¼¼¿ä.");
-				System.out.println("ÇöÀç Ã¼·Â: " + horse[hm.getState()].getHp());
+				System.out.println("ì²´ë ¥ 60 ì´ìƒë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+				System.out.println("íœ´ì‹ì„ í†µí•´ ì²´ë ¥ì„ íšŒë³µí•˜ì„¸ìš”.");
+				System.out.println("í˜„ì¬ ì²´ë ¥: " + horse[hm.getState()].getHp());
 				Thread.sleep(2000);
 			}
 		}
 		catch(Exception e) {}
 	}
-	public void  restMenu() {	// 2. ÈŞ½Ä
+	public void  restMenu() {	// 2. íœ´ì‹
 		clearScreen();
 		
 		try {
 			for(int i=0; horse[hm.getState()].getHp() < 100; i++) {
 				if(horse[hm.getState()].getHp() == i) {
-					System.out.println("=================== ÈŞ½Ä ¸Ş´º ===================");
-					System.out.println("ÈŞ½Ä Áß ... ÇöÀç Ã¼·Â : " + horse[hm.getState()].getHp());
+					System.out.println("=================== íœ´ì‹ ë©”ë‰´ ===================");
+					System.out.println("íœ´ì‹ ì¤‘ ... í˜„ì¬ ì²´ë ¥ : " + horse[hm.getState()].getHp());
 					horse[hm.getState()].setHp(horse[hm.getState()].getHp()+1);
 					Thread.sleep(200); 
 					clearScreen();
@@ -125,15 +125,15 @@ public class HorseRacingFunction {
 		catch(Exception e) { }
 	};    
 
-	public void  gambleMenu() {		// 3. »Ì±â
+	public void  gambleMenu() {		// 3. ë½‘ê¸°
 		clearScreen();
-		System.out.println("=================== °æÁÖ¸¶ »Ì±â ===================");
+		System.out.println("=================== ê²½ì£¼ë§ˆ ë½‘ê¸° ===================");
 		try {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("200¿øÀ» »ç¿ëÇØ °æÁÖ¸¶¸¦ »ÌÀ¸½Ã°Ú½À´Ï±î?");
+			System.out.println("200ì›ì„ ì‚¬ìš©í•´ ê²½ì£¼ë§ˆë¥¼ ë½‘ìœ¼ì‹œê² ìŠµë‹ˆê¹Œ?");
 			System.out.println("1. YES ");
 			System.out.println("2. NO ");
-			System.out.print("¼±ÅÃ: ");
+			System.out.print("ì„ íƒ: ");
 			int select = sc.nextInt();
 			sc.nextLine();
 
@@ -144,8 +144,8 @@ public class HorseRacingFunction {
 						if(horse[i] == null) {
 							horse[i] = new Horse();
 							System.out.println();
-							System.out.println("°æÁÖ¸¶ »Ì±â ¿Ï·á.");
-							System.out.print("°æÁÖ¸¶ÀÇ ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+							System.out.println("ê²½ì£¼ë§ˆ ë½‘ê¸° ì™„ë£Œ.");
+							System.out.print("ê²½ì£¼ë§ˆì˜ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 							horse[i].setName(sc.nextLine());
 							break;
 						}
@@ -154,7 +154,7 @@ public class HorseRacingFunction {
 				}
 				else {
 					System.out.println();
-					System.out.println("±İ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+					System.out.println("ê¸ˆì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 					Thread.sleep(2000);
 				}
 				break;
@@ -163,16 +163,16 @@ public class HorseRacingFunction {
 
 				break;
 			default :
-				System.out.println("1¹ø°ú 2¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.println("1ë²ˆê³¼ 2ë²ˆì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 				break;
 			}
 		}
 		catch(Exception e) { }
-	};	// 3. »Ì±â
+	};	// 3. ë½‘ê¸°
 	
 	public void byeMessage() {
 		System.out.println();
-		System.out.println("ÇÁ·Î±×·¥ Á¾·á.");
+		System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£Œ.");
 	}
 
 	public void clearScreen() {

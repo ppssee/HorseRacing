@@ -5,12 +5,13 @@ import java.util.Random;
 public class Horse {
 
 	private static int count = 1;
+	
 	private int horseId;
 	private String horseName;
 	private String horseGrade;
-	private int horseHp = 100;
-	private int horseSpeed = 0;
-	private int horseMoney = 0;
+	private int horseHp;
+	private int horseSpeed;
+	private static int horseMoney = 0;
 	
 	public Horse() {}
 	
@@ -19,6 +20,8 @@ public class Horse {
 		this.horseName = horseName;
 		this.horseGrade = randGrade(); 
 		this.horseSpeed = randSpeed(this.horseGrade);
+		this.horseHp = 100;
+		
 		count ++;
 	}
 

@@ -1,8 +1,9 @@
 package com.kh.jdbc.Horse.model.view;
 
+import java.util.List;
 import java.util.Scanner;
 
-import com.kh.pse.Horse;
+import com.kh.jdbc.Horse.model.vo.Horse;
 
 public class HorseView {
 	
@@ -13,20 +14,20 @@ public class HorseView {
 		System.out.println("기본 경주마를 생성합니다.");
 		System.out.println("사용하실 경주마의 정보를 입력해주세요.");
 		System.out.print("경주마의 이름 : ");
-		String name = sc.nextLine();
+		String name = sc.next();
 		Horse horse = new Horse(name);
-		horse.setGrade("하");
-		horse.setSpeed(25);
+		horse.setHorseGrade("하");
+		horse.setHorseSpeed(25);
 
 		return horse;
 	};	
 
-	public int mainMenu() { // 메인 메뉴
+	public int mainMenu(Horse horse) { // 메인 메뉴
 		Scanner sc = new Scanner(System.in);
 		clearScreen();
 		System.out.println("==================== 메인 메뉴 ====================");
-		System.out.printf("이름: %-6s\t \n", horse[hm.getState()].getName());
-		System.out.printf("체력: %3d | 스피드: %2d | 등급: %s | 재산: %d |  \n", horse[hm.getState()].getHp(), horse[hm.getState()].getSpeed(), horse[hm.getState()].getGrade(), hm.getMoney());
+		System.out.printf("이름: %-6s\t \n", horse.getHorseName());
+		System.out.printf("체력: %3d | 스피드: %2d | 등급: %s | 재산: %d |  \n", horse.getHorseHp(), horse.getHorseSpeed(), horse.getHorseGrade(), horse.getHorseMoney());
 		System.out.println();
 		System.out.println("0. 선택");
 		System.out.println("1. 경주");
@@ -35,15 +36,26 @@ public class HorseView {
 		System.out.println("4. 종료");
 		System.out.print("입력: ");
 		int choice = sc.nextInt();
-		sc.nextLine();
 		return choice;
-	};
-	
-	
-	
-	
-	
-	
+	}
+
+	public Horse selectMenu(List<Horse> horse) { 	// 0. 선택
+		Scanner sc = new Scanner(System.in);
+		clearScreen();
+		System.out.println("=================== 경주마 선택 ===================");
+		
+		int i = 0;
+		for(Horse hOne : horse) {
+			System.out.printf("%2d. 이름: %-6s\t| 스피드: %2d | 등급: %s\n", i, hOne.getHorseName(), hOne.getHorseSpeed(), hOne.getHorseGrade());
+			i++;
+		}
+		System.out.println();
+		System.out.print("입력: ");	
+		int choice = sc.nextInt();
+		return horse.get(choice);
+		
+	}
+
 	public void printMessage(String msg) {
 		System.out.println(msg);
 	}
@@ -59,5 +71,10 @@ public class HorseView {
 	public void clearScreen() {
 		for (int i = 0; i < 80; i++)
 			System.out.println("");  
+	}
+
+	public void end() {
+		System.out.println();
+		System.out.println("프로그램 종료.");
 	}
 }

@@ -54,7 +54,7 @@ public class HorseRun {
 				} else {
 					hView.displayError("경주마 2마리 이상 보유시 삭제 가능합니다.");
 				}
-				
+				 
 				break;
 			case 2 :   // 경주 메뉴
 				horse = hView.racingMenu(horse);

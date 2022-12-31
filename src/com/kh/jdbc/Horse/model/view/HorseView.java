@@ -56,6 +56,42 @@ public class HorseView {
 		
 	}
 
+	public Horse gambleMenu(Horse horse) {		// 3. 뽑기
+		clearScreen();
+		System.out.println("=================== 경주마 뽑기 ===================");
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("200원을 사용해 경주마를 뽑으시겠습니까?");
+			System.out.println("1. YES ");
+			System.out.println("2. NO ");
+			System.out.print("선택: ");
+			int select = sc.nextInt();
+			switch(select) {
+			case 1:
+				if( horse.getHorseMoney() >= 200) {
+					System.out.println("경주마 뽑기 완료.");
+					System.out.print("이름 입력 : ");
+					String name = sc.next();
+					horse = new Horse(name);
+					horse.setHorseMoney(horse.getHorseMoney()-200);
+				} else {
+					System.out.println();
+					System.out.println("금액이 부족합니다.");
+					Thread.sleep(2000);
+				}
+				break;
+			case 2:
+				break;
+			default :
+				System.out.println("1번과 2번을 입력해주세요.");
+				break;
+			}
+		}
+		catch(Exception e) { }
+		return horse;
+	};	
+	
+	
 	public void printMessage(String msg) {
 		System.out.println(msg);
 	}

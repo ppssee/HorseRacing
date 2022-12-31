@@ -8,13 +8,13 @@ import com.kh.jdbc.Horse.model.vo.Horse;
 public class HorseContoller {
 	
 	
-	public int registerMember(Horse horse) {    // 
+	public int registerMember(Horse horse) {    // 생성
 		HorseDAO hDao = new HorseDAO();
 		int result = hDao.inputHorse(horse);
 		return result;
 	}
 	
-	public List<Horse> printAll() {
+	public List<Horse> printAll() {		// 전체출력
 		HorseDAO hDao = new HorseDAO();
 		List<Horse> hList = null;
 		hList = hDao.selectAll();

@@ -12,6 +12,7 @@ public class HorseRun {
 		HorseView hView = new HorseView();
 		HorseContoller hCon = new HorseContoller();
 		Horse horse = null;
+		Horse createHorse = null;
 		List<Horse> hList = null;
 		int result = 0;
 		
@@ -21,8 +22,10 @@ public class HorseRun {
 			horse = hView.startMenu();	
 			result = hCon.registerMember(horse);
 			if(result > 0) {
-				// 성공
+				hView.displaySuccess("생성 성공");
 				break Bye;
+			} else {
+				hView.displayError("생성 실패");
 			}
 		}
 		
@@ -35,7 +38,7 @@ public class HorseRun {
 				if(!hList.isEmpty()) {
 					horse = hView.selectMenu(hList);
 				} else {
-					hView.displayError("데이터가 존재하지 않습니다.");
+					hView.displayError("선택 실패");
 				}
 				break;
 			case 1 :   // 경주 메뉴
@@ -45,7 +48,13 @@ public class HorseRun {
 				
 				break;
 			case 3 :  // 경주마 뽑기 메뉴
-				
+				createHorse = hView.gambleMenu(horse);
+				result = hCon.registerMember(createHorse);
+				if(result > 0) {
+					hView.displaySuccess("뽑기 성공");
+				} else {
+					hView.displayError("뽑기 실패");
+				}
 				break;
 			case 4 :	 // 프로그램 종료.
 				hView.end();

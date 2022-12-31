@@ -18,11 +18,10 @@ public class HorseDAO {
 	private final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
 	
 	
-	
 	public int inputHorse(Horse horse) {
 		
 		int result = 0;
-		String sql = "INSERT ALL INTO HORSE_TBL VALUES(?,?,?,?,?) INTO MONEY_TBL VALUES(?,?) SELECT * FROM DUAL";
+		String sql = "INSERT INTO HORSE_TBL VALUES(?,?,?,?,?,?)";
 	
 		try {
 			Class.forName(DRIVER_NAME);
@@ -33,10 +32,8 @@ public class HorseDAO {
 			pstmt.setString(3, horse.getHorseGrade());
 			pstmt.setInt(4, horse.getHorseHp());
 			pstmt.setInt(5, horse.getHorseSpeed());
-			pstmt.setInt(6, horse.getHorseId());
-			pstmt.setInt(7, horse.getHorseMoney());
+			pstmt.setInt(6, horse.getHorseMoney());
 			result = pstmt.executeUpdate();
-			
 			
 			pstmt.close();
 			conn.close();
@@ -56,7 +53,7 @@ public class HorseDAO {
 		List<Horse> hList = null;
 		Horse horse = null;
 	
-		String sql = "SELECT * FROM HOTSE_TBL JOIN MONEY_TBL USING(HORSE_ID)";
+		String sql = "SELECT * FROM HOTSE_TBL";
 		
 		
 		try {
@@ -92,7 +89,78 @@ public class HorseDAO {
 		
 	}
 
+	public int updateHorse(Horse horse) {
+		
+		String sql = "UPDATE HORSE_TBL SET HORSE_HP = ? , HORSE_MONEY = ? WHERE HORSE_ID = ?";
+		int result = 0;
+		try {
+			Class.forName(DRIVER_NAME);
+			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, horse.getHorseHp());
+			pstmt.setInt(2, horse.getHorseMoney());
+			pstmt.setInt(3, horse.getHorseId());
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int restHorse(Horse horse) {
+		int result = 0;
+		String sql = "UPDATE HORSE_TBL SET HORSE_HP = ? WHERE HORSE_ID = ?";
+		try {
+			Class.forName(DRIVER_NAME);
+			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, horse.getHorseHp());
+			pstmt.setInt(1, horse.getHorseId());
+			result = pstmt.executeUpdate();
+				
+			pstmt.close();
+			conn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
-
+	public int deleteHorse(Horse horse) {
+		int result = 0;
+		String sql = "DELETE FROM HORSE_TBL WHERE HORSE_ID = ?";
+		
+		try {
+			Class.forName(DRIVER_NAME);
+			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, horse.getHorseId());
+			result = pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 
 }

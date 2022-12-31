@@ -20,4 +20,22 @@ public class HorseContoller {
 		hList = hDao.selectAll();
 		return hList;
 	}
+	 
+	public int modifyHorse(Horse horse) {    // 경주 후 
+		HorseDAO hDao = new HorseDAO();
+		int result = hDao.updateHorse(horse);
+		return result;
+	}
+	
+	public int restHorse(Horse horse) {
+		HorseDAO hDao = new HorseDAO();
+		int result = hDao.restHorse(horse);
+		return result;
+	}
+	
+	public int deleteHorse(Horse horse) {
+		HorseDAO hDao = new HorseDAO();
+		int result = hDao.deleteHorse(horse);
+		return result;
+	}
 }

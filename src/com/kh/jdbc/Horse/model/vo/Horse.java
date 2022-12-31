@@ -11,7 +11,7 @@ public class Horse {
 	private String horseGrade;
 	private int horseHp;
 	private int horseSpeed;
-	private static int horseMoney = 0;
+	private int horseMoney;
 	
 	public Horse() {}
 	
@@ -21,7 +21,7 @@ public class Horse {
 		this.horseGrade = randGrade(); 
 		this.horseSpeed = randSpeed(this.horseGrade);
 		this.horseHp = 100;
-		
+		this.horseMoney = 0;
 		count ++;
 	}
 

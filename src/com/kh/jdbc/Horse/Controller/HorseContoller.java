@@ -7,10 +7,15 @@ import com.kh.jdbc.Horse.model.vo.Horse;
 
 public class HorseContoller {
 	
-	
-	public int registerMember(Horse horse) {    // 생성
+	public int inputHorse(Horse horse) {    // 생성
 		HorseDAO hDao = new HorseDAO();
 		int result = hDao.inputHorse(horse);
+		return result;
+	}
+	
+	public int createHorse(List<Horse> horse) {    // 생성
+		HorseDAO hDao = new HorseDAO();
+		int result = hDao.createHorse(horse);
 		return result;
 	}
 	
@@ -38,4 +43,11 @@ public class HorseContoller {
 		int result = hDao.deleteHorse(horse);
 		return result;
 	}
+	
+	public void allDeleteHorse() {
+		HorseDAO hDao = new HorseDAO();
+		hDao.allDeleteHorse();
+	}
+
+	
 }

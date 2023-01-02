@@ -1,5 +1,6 @@
 package com.kh.jdbc.Horse.model.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,11 +8,11 @@ import java.util.Scanner;
 import com.kh.jdbc.Horse.model.vo.Horse;
 
 public class HorseView {
-	
+
 
 	public Horse startMenu() { 		// 시작 메뉴
 		Scanner sc = new Scanner(System.in);
-		clearScreen();
+
 		System.out.println("================== 경마 프로그램 ==================");
 		System.out.println("기본 경주마를 생성합니다.");
 		System.out.println("사용하실 경주마의 정보를 입력해주세요.");
@@ -26,7 +27,7 @@ public class HorseView {
 
 	public int mainMenu(Horse horse) { // 메인 메뉴
 		Scanner sc = new Scanner(System.in);
-		clearScreen();
+
 		System.out.println("==================== 메인 메뉴 ====================");
 		System.out.printf("이름: %-6s\t \n", horse.getHorseName());
 		System.out.printf("체력: %3d | 스피드: %2d | 등급: %s | 재산: %d |  \n", horse.getHorseHp(), horse.getHorseSpeed(), horse.getHorseGrade(), horse.getHorseMoney());
@@ -44,9 +45,25 @@ public class HorseView {
 
 	public Horse selectMenu(List<Horse> horse) { 	// 0. 선택
 		Scanner sc = new Scanner(System.in);
-		clearScreen();
-		System.out.println("=================== 경주마 선택 ===================");
+		int i = 0;
 		
+		System.out.println("=================== 경주마 선택 ===================");
+		for(Horse hOne : horse) {
+			System.out.printf("%2d. 이름: %-6s\t| 스피드: %2d | 등급: %s\n", i, hOne.getHorseName(), hOne.getHorseSpeed(), hOne.getHorseGrade());
+			i++;
+		}
+		System.out.println();
+		System.out.print("입력: ");	
+		int choice = sc.nextInt();
+		return horse.get(choice);
+
+	}
+	
+	public Horse deleteHorseMenu(List<Horse> horse) { 	// 0. 선택
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("=================== 삭제 할 경주마 선택 ===================");
+
 		int i = 0;
 		for(Horse hOne : horse) {
 			System.out.printf("%2d. 이름: %-6s\t| 스피드: %2d | 등급: %s\n", i, hOne.getHorseName(), hOne.getHorseSpeed(), hOne.getHorseGrade());
@@ -56,13 +73,13 @@ public class HorseView {
 		System.out.print("입력: ");	
 		int choice = sc.nextInt();
 		return horse.get(choice);
-		
+
 	}
 
-	
+
 	public Horse racingMenu(Horse horse) { 	//  2. 경주
 		Random rand = new Random();
-		clearScreen();
+
 		try {
 			if(horse.getHorseHp() >= 60) {		// 체력 60 이상만 경주 가능
 				for(int i=0; i<20; i++) {
@@ -79,7 +96,7 @@ public class HorseView {
 							}
 							System.out.println();
 							System.out.println("======================================");
-							Thread.sleep(200); 
+							Thread.sleep(100); 
 							break;
 						} 
 					}
@@ -90,7 +107,7 @@ public class HorseView {
 				horse.setHorseMoney(horse.getHorseMoney()+increaseMoney);		// 종료 후 0~99원 획득.
 			} 
 			else {
-				clearScreen();
+				System.out.println();
 				System.out.println("체력 60 이상만 가능합니다.");
 				System.out.println("휴식을 통해 체력을 회복하세요.");
 				System.out.println("현재 체력: " + horse.getHorseHp());
@@ -98,65 +115,71 @@ public class HorseView {
 			}
 		}
 		catch(Exception e) {}
-		
+
 		return horse;
 	}
-	
+
 	public Horse restMenu(Horse horse) {	// 3. 휴식
-		clearScreen();
-		
-		try {
-			for(int i=0; horse.getHorseHp() < 100; i++) {
-				if(horse.getHorseHp() == i) {
-					System.out.println("=================== 휴식 메뉴 ===================");
-					System.out.println("휴식 중 ... 현재 체력 : " + horse.getHorseHp());
-					horse.setHorseHp(horse.getHorseHp()+1);
-					Thread.sleep(200); 
-					clearScreen();
+
+		if(horse.getHorseHp()<100) {
+			try {
+				for(int i=0; horse.getHorseHp() < 100; i++) {
+					if(horse.getHorseHp() == i) {
+						System.out.println("=================== 휴식 메뉴 ===================");
+						System.out.println("휴식 중 ... 현재 체력 : " + horse.getHorseHp());
+						horse.setHorseHp(horse.getHorseHp()+1);
+						Thread.sleep(100); 
+						clearScreen();
+					}
 				}
 			}
+
+			catch(Exception e) { }
+			
 		}
-		catch(Exception e) { }
 		return horse;
 	}    
-	
-	
-	public Horse gambleMenu(Horse horse) {		// 4. 뽑기
-		clearScreen();
+
+
+	public int gambleMenu(Horse horse) {		// 4. 뽑기
+
 		System.out.println("=================== 경주마 뽑기 ===================");
-		try {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("100원을 사용해 경주마를 뽑으시겠습니까?");
-			System.out.println("1. YES ");
-			System.out.println("2. NO ");
-			System.out.print("선택: ");
-			int select = sc.nextInt();
-			switch(select) {
-			case 1:
-				if( horse.getHorseMoney() >= 100) {
-					System.out.println("경주마 뽑기 완료.");
-					System.out.print("이름 입력 : ");
-					String name = sc.next();
-					horse = new Horse(name);
-					horse.setHorseMoney(horse.getHorseMoney()-100);
-				} else {
-					System.out.println();
-					System.out.println("금액이 부족합니다.");
-					Thread.sleep(2000);
-				}
-				break;
-			case 2:
-				break;
-			default :
-				System.out.println("1번과 2번을 입력해주세요.");
-				break;
-			}
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("100원을 사용해 경주마를 뽑으시겠습니까?");
+		System.out.println("1. YES ");
+		System.out.println("2. NO ");
+		System.out.print("선택: ");
+		int select = sc.nextInt();
+		
+		if( horse.getHorseMoney() >= 100 && select == 1) {
+			return select;
+		} else {
+			System.out.println();
+			System.out.println("금액이 부족합니다.");
+			return select = 2;
 		}
-		catch(Exception e) { }
-		return horse;
-	};	
+	}
+	 
+
+	public List<Horse> gambleMenuInsert(Horse horse) {
+		List<Horse> hList = new ArrayList<Horse>();
+		horse.setHorseMoney(horse.getHorseMoney()-100);
+		hList.add(horse);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("경주마 뽑기 완료.");
+		System.out.print("이름 입력 : ");
+		String name = sc.next();
+		horse = new Horse(name);
+		hList.add(horse);
+		
+		return hList;
+	}
 	
-	
+	public void gambleMenyNoMoney() {
+		
+	}
+
 	public void printMessage(String msg) {
 		System.out.println(msg);
 	}
@@ -168,7 +191,7 @@ public class HorseView {
 	public void displayError(String message) {
 		System.out.println("[서비스 실패] : " + message);
 	}
-	
+
 	public void end() {
 		System.out.println();
 		System.out.println("프로그램 종료.");

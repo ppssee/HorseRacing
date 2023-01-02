@@ -15,12 +15,14 @@ public class HorseRun {
 		Horse createHorse = null;
 		List<Horse> hList = null;
 		int result = 0;
+		int num = 0;
 		
 		
+		hCon.allDeleteHorse();
 		Bye :
 		while(true) {	// 첫 캐릭터 생성.
 			horse = hView.startMenu();	
-			result = hCon.registerMember(horse);
+			result = hCon.inputHorse(horse);
 			if(result > 0) {
 				hView.displaySuccess("생성 성공");
 				break Bye;
@@ -44,9 +46,11 @@ public class HorseRun {
 			case 1 :	// 경주마 삭제 메뉴
 				hList = hCon.printAll();
 				if(!hList.isEmpty() && (hList.size() > 1)) {
-					horse = hView.selectMenu(hList);
+					horse = hView.deleteHorseMenu(hList);
 					result = hCon.deleteHorse(horse);
+
 					if(result > 0) {
+						hList = hCon.printAll();
 						horse = hView.selectMenu(hList);
 					} else {
 						hView.displayError("삭제 Error");
@@ -54,7 +58,7 @@ public class HorseRun {
 				} else {
 					hView.displayError("경주마 2마리 이상 보유시 삭제 가능합니다.");
 				}
-				   
+
 				break;
 			case 2 :   // 경주 메뉴
 				horse = hView.racingMenu(horse);
@@ -75,13 +79,19 @@ public class HorseRun {
 				}
 				break;
 			case 4 :  // 경주마 뽑기 메뉴
-				horse = hView.gambleMenu(horse);
-				result = hCon.registerMember(horse);
-				if(result > 0) {
-					hView.displaySuccess("뽑기 성공");
+				num = hView.gambleMenu(horse);
+				if(num == 1) {
+					hList = hView.gambleMenuInsert(horse);
+					result = hCon.createHorse(hList);
+					if(result > 0) {
+						hView.displaySuccess("뽑기 성공");
+					} else {
+						hView.displayError("뽑기 Error");
+					}
 				} else {
-					hView.displayError("뽑기 Error");
+					
 				}
+				
 				break;
 			
 			case 5 :	 // 프로그램 종료.
